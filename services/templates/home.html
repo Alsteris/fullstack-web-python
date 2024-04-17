@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}"> 
+</head>
+<body>
+  <div class="login-form">
+    <div id="notification" style="background-color: aqua; text-align: center;"></div>
+    <h1>Login</h1>
+    <form action="{{url_for('login')}}" method="POST" class="space-y-4">
+      <div>
+        <label for="username"  name="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+      </div>
+      <div>
+        <label for="password" name="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    // Function to show notification
+    function showNotification(message, duration) {
+        const notification = document.getElementById('notification');
+        notification.innerText = message;
+        notification.classList.remove('hidden');
+
+        setTimeout(function () {
+            notification.classList.add('hidden');
+        }, duration);
+    }
+
+    // Check if Flask provided any message and show it as notification
+    window.addEventListener('DOMContentLoaded', function () {
+        const flaskMessage = "{{ get_flashed_messages()[0] if get_flashed_messages() else '' }}";
+        if (flaskMessage) {
+            showNotification(flaskMessage, 3000); // 3000 milliseconds = 3 seconds
+        }
+    });
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
