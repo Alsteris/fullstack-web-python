@@ -29,7 +29,7 @@ input[type="password"] {
   border-radius: 3px;
   margin-bottom: 15px;
 }
-button {
+.primaryButton {
   width: 100%;
   padding: 10px;
   background-color: #3498db;
@@ -39,3 +39,5 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+

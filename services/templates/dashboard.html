@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Template</title>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style_dashboard.css') }}">
 </head>
 <body>
-    <div>
-        <p>ini adalah halaman dashoard</p>
+<div class="wrapper">
+    <div class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+        <li><a href="/profile">Profile</a></li>
+    </ul>
     </div>
+    <div class="main-content">
+    <header>
+        <h1>Welcome!</h1>
+        <p>This is your dashboard.</p>
+    </header>
+    <div class="content-wrapper">
+    </div>
+    </div>
+</div>
 </body>
 </html>

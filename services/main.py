@@ -33,3 +33,29 @@ def dashboard():
 # redirect page
 #def dashboard():
     #return render_template('dashboard.html')
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    name = request.form["name"]
+    username = request.form["reg_username"]
+    password = request.form["reg_password"]
+    confirm_password = request.form["password-repeat"]
+
+    if password != confirm_password:
+        flash("Registration Failed: Passwords do not match")
+        return redirect(url_for('register_page'))
+
+    success, error = service.register(name, username, password)
+    if error:
+        flash(f"Registration Failed: {error}")
+    else:
+        flash("Registration successful")
+    return redirect(url_for('register_page'))
+
+@app.route("/register_page")
+def register_page():
+    return render_template("register.html")
+
+@app.route("/profile")
+def profile_page():
+    return render_template("profile.html")

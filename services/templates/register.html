@@ -4,22 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register Page</title>
-  <link rel="stylesheet" href="loginstyle.css">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}"> 
 </head>
 <body>
-  <div class="container">
+  <div class="form">
+    <div id="notification" style="background-color: aqua; text-align: center;"></div>
     <h1>Create Your Account</h1>
-    <form action="#" method="">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" placeholder="Enter your username" required>
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" placeholder="Enter your email" required>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    <form action="/register" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      <label for="reg_username">Username:</label>
+      <input type="text" id="reg_username" name="reg_username" placeholder="Enter your username" required>
+      <label for="reg_password">Password:</label>
+      <input type="password" id="reg_password" name="reg_password" placeholder="Enter your password" required>
       <label for="password-repeat">Repeat Password:</label>
       <input type="password" id="password-repeat" name="password-repeat" placeholder="Repeat password" required>
-      <button type="submit"><a href="login.html" style="text-decoration: none; color: white;">Register</a></button>
+      <button class="primaryButton" type="submit">Submit</button>
+      <p>Sudah punya akun? <a href="/">Silahkan login</a> </p>
     </form>
   </div>
+
+  <script>
+    // Function to show notification
+    function showNotification(message, duration) {
+        const notification = document.getElementById('notification');
+        notification.innerText = message;
+        notification.classList.remove('hidden');
+
+        setTimeout(function () {
+            notification.classList.add('hidden');
+        }, duration);
+    }
+
+    // Check if Flask provided any message and show it as notification
+    window.addEventListener('DOMContentLoaded', function () {
+        const flaskMessage = "{{ get_flashed_messages()[0] if get_flashed_messages() else '' }}";
+        if (flaskMessage) {
+            showNotification(flaskMessage, 3000); // 3000 milliseconds = 3 seconds
+        }
+    });
+</script>
+
 </body>
 </html>
